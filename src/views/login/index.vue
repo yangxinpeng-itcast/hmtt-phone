@@ -25,6 +25,7 @@ export default {
   methods: {
     async userLogin() {
         const res = await login(this.user);
+        this.$store.commit('setUser',res)
         console.log(res)
       } 
   }
