@@ -11,27 +11,24 @@
 </template>
 
 <script>
-import request from '../../utils/request.js'
+// import request from '../../utils/request.js'
+import { login } from '@/api/user.js'
 export default {
-  data () {
+  data() {
     return {
       user: {
-        mobile: '18801185985',
-        code: '246810'
+        mobile: "18801185985",
+        code: "246810"
       }
-    }
+    };
   },
   methods: {
-    async userLogin () {
-      const res = await request({
-        method: 'post',
-        url: `app/v1_0/authorizations`,
-        data: this.user
-      })
-      console.log(res)
-    }
+    async userLogin() {
+        const res = await login(this.user);
+        console.log(res)
+      } 
   }
-}
+};
 </script>
 
 <style scoped lang="less">
