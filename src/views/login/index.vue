@@ -16,9 +16,8 @@
         <van-field v-model="user.code" label="验证码" placeholder="请输入验证码" required type="password" />
       </van-cell-group>
       <!-- @事件名.修饰符 -->
-      <van-button type="info" @click.prevent="userLogin">登录</van-button>
+      <van-button :loading="loading" type="info" @click.prevent="userLogin">登录</van-button>
     </form>
-    
   </div>
 </template>
 
@@ -31,14 +30,23 @@ export default {
       user: {
         mobile: "18801185985",
         code: "246810"
-      }
+      },
+      loading: false
     };
   },
   methods: {
     async userLogin() {
-      const res = await login(this.user);
-      this.$store.commit("setUser", res);
-      console.log(res);
+    this.loading = true
+      this.$validator.validate().then(async valid => {
+        if (!valid) {
+          this.loading = false
+          return
+        }
+        const res = await login(this.user)
+        this.$store.commit("setUser", res)
+        this.loading = false
+        this.$router.push({path:'/'})
+      })
     }
   }
 };
