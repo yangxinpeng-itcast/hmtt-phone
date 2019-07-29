@@ -56,6 +56,7 @@ export default {
 .box {
   .van-nav-bar {
     background-color: #0096fa;
+    color: #fff
   }
   .van-button {
     width: 100%;

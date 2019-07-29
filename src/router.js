@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+// 正常模式
 import Login from './views/login'
-import Home from './views/home'
-import tabbarLayout from './views/tabbar-layout'
+
+// 路由懒加载模式
+const Home = () => import ('./views/home')
+const tabbarLayout = () => import ('./views/tabbar-layout')
 
 Vue.use(Router)
 
